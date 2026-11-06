@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081923">
+  <meta name="description" content="Zoology Chapter 1: a 20-question interactive practice quiz, with instant feedback and explanations. Based on annotated lecture slides and class notes.">
+  <title>Zoology Quest | Chapter 1</title>
+  <style>
+    :root{--bg:#081923;--surface:#102732;--panel:#132b37;--panel2:#193642;--border:#30505b;--text:#eef8f6;--muted:#a8c4c8;--accent:#b4ef65;--green:#a6ef93;--red:#ffb5ab;--aqua:#76e8d6;--navy:#0b2530;--shadow:0 24px 70px #0005}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-height:100vh;font-family:Inter,"Segoe UI",system-ui,-apple-system,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;overflow-x:hidden}
+    body::before{content:"";position:fixed;z-index:-3;inset:0;background:radial-gradient(circle at 83% 12%,#194b4b 0,transparent 37%),radial-gradient(circle at 15% 78%,#103e3e 0,transparent 43%),#081923}
+    .shell{max-width:1120px;margin:auto;padding:0 32px}
+    .topbar{height:88px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff19;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:850;letter-spacing:.07em;font-size:.95rem}
+    .brandmark{width:37px;height:37px;display:grid;place-items:center;border:1.5px solid #b4ef65a9;border-radius:12px;color:var(--accent);background:#b4ef6517}
+    .brandmark svg{width:23px;height:23px}
+    .brand .sub{font-size:.65rem;color:var(--muted);font-weight:600;letter-spacing:.18em;display:block;margin-top:-4px}
+    .topright{display:flex;gap:12px;align-items:center}
+    .chapter{display:inline-flex;align-items:center;gap:8px;color:#d1e7e5;letter-spacing:.13em;font-weight:700;font-size:.68rem;border:1px solid #ffffff25;padding:10px 15px;border-radius:99px}
+    .chapter::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+    button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+    .share,.ghost{display:inline-flex;align-items:center;gap:8px;border:1px solid #ffffff38;color:#effaf6;background:#ffffff08;padding:10px 15px;border-radius:99px;font-size:.83rem;font-weight:750;transition:background .2s}
+    .share:hover,.ghost:hover{background:#ffffff18}.share svg,.ghost svg{width:17px;height:17px}
+    #intro{position:relative;isolation:isolate;min-height:695px;display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;padding-top:48px;padding-bottom:72px}
+    .introcopy{position:relative;z-index:1}
+    .eyebrow{display:flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:.23em;font-size:.69rem;color:var(--accent);font-weight:850}
+    .eyebrow::before{content:"";width:29px;height:1px;background:var(--accent)}
+    .headline{font-size:clamp(3.2rem,6.8vw,6.55rem);line-height:.99;letter-spacing:-.072em;margin:25px 0 24px;font-weight:880;max-width:690px}
+    .headline em{display:block;color:var(--accent);font-style:normal}
+    .leadin{font-size:1.05rem;max-width:510px;color:#bfd6d8;line-height:1.75;margin:0 0 21px}
+    .arabic-note{color:#b7d1d0;font-size:.86rem;direction:rtl;text-align:left;max-width:480px;margin:0 0 29px}
+    .heroactions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .btn{border:0;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;gap:11px;min-height:54px;padding:14px 26px;font-weight:850;transition:transform .15s,filter .15s,background .15s;font-size:.97rem}
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
+    .btn-primary{background:var(--accent);color:#123021;box-shadow:0 10px 34px #b4ef6525}
+    .btn-outline{border:1px solid #4b6b74;background:#132f3c;color:#e7faf8}
+    .btn svg{width:20px;height:20px}
+    .secondary-copy{color:#a1bdc2;font-size:.8rem;margin:15px 0 0}
+    .visual{align-self:stretch;display:flex;align-items:center;justify-content:center;position:relative;min-height:490px}
+    .visual::before{content:"";position:absolute;width:min(88%,430px);aspect-ratio:1;background:#a8eb6b09;border:1px solid #b4ef6539;border-radius:50%;box-shadow:0 0 0 36px #a8eb6b05,0 0 0 75px #a8eb6b03;transform:translate(7%,2%)}
+    .orb{position:relative;width:min(100%,460px);aspect-ratio:1;display:grid;place-items:center}
+    .orb .rings{width:100%;height:100%;position:absolute;inset:0;overflow:visible}
+    .orb .rings circle{stroke:#b4ef6540;fill:none;stroke-width:.8}
+    .seed{position:relative;width:250px;height:250px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 40% 37%,#7bbd75 0,#3d7b71 32%,#1c5157 57%,#10313e 82%);box-shadow:inset 0 0 75px #9aec9225,0 35px 100px #011318ab,0 0 75px #7fea8030;transform:rotate(-9deg)}
+    .seed svg{width:165px;height:165px;filter:drop-shadow(0 10px 12px #06191c5c)}
+    .orbitdot{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 15px #b4ef6588}
+    .orbitdot.one{top:10%;left:22%}.orbitdot.two{right:0;top:52%;width:8px;height:8px;background:var(--aqua)}.orbitdot.three{bottom:12%;left:26%;width:6px;height:6px;background:var(--aqua)}
+    .floatlabel{position:absolute;background:#153440ee;border:1px solid #87aa9b51;backdrop-filter:blur(10px);border-radius:13px;padding:13px 16px;box-shadow:var(--shadow);font-size:.77rem;color:#b7d5d5;white-space:nowrap}
+    .floatlabel b{display:block;color:#f4fbf5;font-size:1.08rem;margin-top:3px}.floatlabel.a{top:16%;right:0}.floatlabel.b{bottom:17%;left:0}.floatlabel .tiny{color:var(--accent);font-size:.62rem;letter-spacing:.16em;font-weight:800}
+    .brief{grid-column:1/-1;border-top:1px solid #ffffff20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:20px;flex-wrap:wrap}
+    .brief p{font-size:.76rem;color:#a8c8c8;margin:0}.brief .topics{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid #39616a;color:#d4eae7;border-radius:99px;font-size:.7rem;padding:7px 11px;background:#17343c}
+    .quiz-container{max-width:840px;margin:38px auto 84px;padding:0 22px}
+    .hidden{display:none!important}
+    .quiz-top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:0 0 22px}
+    .mini-eyebrow{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:800}
+    .quiz-header h2{font-size:clamp(1.65rem,3vw,2.05rem);margin:4px 0 0;letter-spacing:-.04em}
+    .scorer{border:1px solid #47616a;background:#17343c;border-radius:15px;padding:10px 16px;display:flex;gap:10px;align-items:baseline}
+    .scorer strong{font-size:1.25rem;color:var(--accent)}.scorer span{font-size:.76rem;color:var(--muted)}
+    .progressline{height:9px;border-radius:99px;background:#294652;overflow:hidden;border:1px solid #3d5c65;margin:25px 0 12px}
+    .progressline>div{width:0;height:100%;background:linear-gradient(90deg,#6ddfc4,#b4ef65);border-radius:99px;transition:width .4s cubic-bezier(.2,.9,.2,1)}
+    .smallmeta{display:flex;justify-content:space-between;font-size:.76rem;color:#aac3c7;gap:12px}
+    .question-panel{margin-top:24px;border:1px solid #41616c;border-radius:22px;overflow:hidden;background:linear-gradient(144deg,#16323e,#102631 80%);box-shadow:var(--shadow)}
+    .panel-inside{padding:clamp(20px,4vw,42px)}
+    .question-top{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+    .question-id{color:var(--accent);font-size:.72rem;letter-spacing:.12em;font-weight:800;text-transform:uppercase}
+    .topic-pill{border:1px solid #5b8284;border-radius:99px;font-size:.68rem;line-height:1.2;color:#cde4df;padding:7px 11px;background:#21434a}
+    .qtitle{font-size:clamp(1.36rem,3.5vw,2rem);line-height:1.34;letter-spacing:-.025em;margin:25px 0 28px;font-weight:780}
+    .options{display:grid;gap:10px}
+    .option{width:100%;appearance:none;border:1px solid #476773;background:#173440;border-radius:13px;display:flex;align-items:center;text-align:left;gap:14px;min-height:66px;padding:14px 17px;color:#e5f5f2;transition:border-color .13s,background .13s,transform .13s}
+    .option:not(:disabled):hover{border-color:var(--accent);background:#21434b;transform:translateX(3px)}
+    .option:disabled{cursor:default}
+    .opt-letter{flex-shrink:0;display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:#ffffff10;border:1px solid #ffffff16;font-weight:800;color:#d9ebeb;font-size:.86rem}
+    .opt-text{font-size:.94rem;font-weight:650;flex:1}
+    .opt-status{font-size:1.2rem;display:none;font-weight:900;flex-shrink:0}
+    .option.correct{border-color:#8cde91;background:#204c42}.option.correct .opt-letter{background:#b4ef65;color:#133326}.option.correct .opt-status{display:inline;color:#baf39c}
+    .option.incorrect{border-color:#ef938f;background:#54373b}.option.incorrect .opt-letter{background:#f8b1ac;color:#43292a}.option.incorrect .opt-status{display:inline;color:#ffc1bc}
+    .option.dimmed{opacity:.64}
+    .feedback{margin-top:22px;border:1px solid #ffffff2b;background:#ffffff0a;border-radius:13px;padding:18px 20px;animation:rise .25s ease both}
+    .feedback strong{display:flex;align-items:center;gap:8px;font-size:1.05rem;margin-bottom:7px}
+    .feedback.correctfeed strong{color:var(--accent)}.feedback.wrongfeed strong{color:var(--red)}
+    .feedback p{margin:3px 0 0;color:#d9e9e4;font-size:.89rem;line-height:1.7}
+    .feedback .answer-label{color:#b7ebd2;font-size:.84rem;margin:0 0 7px}
+    .panel-footer{border-top:1px solid #ffffff1d;padding:17px clamp(20px,4vw,42px);display:flex;gap:15px;align-items:center;justify-content:space-between;background:#091f2a80;flex-wrap:wrap}
+    .inline-help{font-size:.75rem;color:#a8c5c4}
+    .btn-next{min-width:154px}.btn-next:disabled{opacity:.45;cursor:not-allowed;transform:none}
+    .keyboard-hint{text-align:center;color:#799ba3;margin:16px 0 0;font-size:.75rem}
+    .results{max-width:870px;margin:44px auto 80px;padding:0 22px}
+    .result-hero{border:1px solid #5c806e;background:radial-gradient(circle at 85% 15%,#416e4b50,transparent 55%),linear-gradient(125deg,#143b3b,#112730);border-radius:24px;padding:clamp(25px,5vw,52px);box-shadow:var(--shadow)}
+    .result-grid{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+    .result-tag{font-size:.68rem;letter-spacing:.17em;color:var(--accent);font-weight:800}
+    .result-hero h2{font-size:clamp(2.1rem,5vw,3.5rem);margin:11px 0;line-height:1.08;letter-spacing:-.055em}
+    .result-hero p{max-width:480px;color:#c5ded7;margin:0 0 23px}
+    .result-ring{width:160px;height:160px;border-radius:50%;background:conic-gradient(var(--accent) var(--pct),#345560 var(--pct));display:grid;place-items:center;box-shadow:0 0 45px #b4ef6512}
+    .ring-inner{width:125px;height:125px;border-radius:50%;background:#15353b;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .ring-inner strong{font-size:2.45rem;letter-spacing:-.06em;line-height:1.15}.ring-inner span{color:#bad3cf;font-size:.7rem;letter-spacing:.14em}
+    .result-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .breakdown{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+    .statbox{border:1px solid #355660;background:#12313b;border-radius:14px;padding:17px}
+    .statbox b{font-size:1.5rem;color:#eaf8e8;display:block}.statbox span{font-size:.76rem;color:#a7c6c2}
+    .review-wrap{margin-top:30px}
+    .reviewheading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+    .reviewheading h3{font-size:1.35rem;margin:0}.reviewheading p{color:var(--muted);font-size:.82rem;margin:0}
+    .reviewitem{margin:10px 0;border:1px solid #3e6067;border-radius:13px;background:#102c36;overflow:hidden}
+    .reviewitem summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:16px 18px;font-weight:690}
+    .reviewitem summary::-webkit-details-marker{display:none}
+    .reviewitem summary .number{background:#ffffff11;border-radius:8px;padding:7px 10px;color:#cee3dc;font-size:.76rem}
+    .reviewitem summary .status{margin-left:auto;white-space:nowrap;font-weight:850;font-size:.8rem}
+    .reviewitem summary .status.pass{color:var(--accent)}.reviewitem summary .status.fail{color:var(--red)}
+    .reviewbody{border-top:1px solid #ffffff1b;padding:15px 18px;color:#d2e4e1;font-size:.87rem}.reviewbody p{margin:5px 0 12px}
+    .reviewbody .green{color:var(--accent)}.reviewbody .red{color:var(--red)}
+    .site-footer{border-top:1px solid #ffffff18;display:flex;justify-content:space-between;gap:18px;padding:27px 0 32px;color:#88a7ac;font-size:.73rem;flex-wrap:wrap}
+    .toast{position:fixed;z-index:30;bottom:25px;left:50%;transform:translate(-50%,25px);pointer-events:none;background:#d9f9ba;color:#133629;padding:12px 18px;font-weight:770;border-radius:10px;box-shadow:0 10px 32px #0007;opacity:0;transition:opacity .2s,transform .2s;max-width:calc(100% - 36px);text-align:center}
+    .toast.visible{opacity:1;transform:translate(-50%,0)}
+    @keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:800px){#intro{grid-template-columns:1fr;min-height:unset;padding-top:45px;gap:5px}.visual{min-height:305px}.orb{width:340px}.seed{width:175px;height:175px}.seed svg{width:115px;height:115px}.floatlabel.a{right:8%;top:6%}.floatlabel.b{left:8%;bottom:9%}.brief{margin-top:16px}}
+    @media(max-width:560px){.shell{padding:0 19px}.topbar{height:72px}.chapter{display:none}.brand{font-size:.81rem}.share{padding:9px 12px;font-size:.76rem}.headline{font-size:clamp(3.15rem,13vw,4.25rem);margin:20px 0}.leadin{font-size:.96rem}.visual{min-height:280px}.orb{width:285px}.seed{width:158px;height:158px}.floatlabel{padding:10px 12px;font-size:.67rem}.floatlabel b{font-size:.94rem}.floatlabel.a{right:-1%;top:4%}.floatlabel.b{left:0;bottom:5%}.brief{justify-content:start}.quiz-container{margin-top:25px;padding:0 13px}.question-panel{border-radius:17px}.qtitle{margin:19px 0 21px}.option{min-height:62px;gap:10px;padding:12px}.opt-text{font-size:.88rem}.panel-footer{align-items:stretch}.panel-footer .btn{width:100%}.inline-help{width:100%;text-align:center}.result-grid{grid-template-columns:1fr}.result-ring{width:133px;height:133px;grid-row:1}.ring-inner{width:105px;height:105px}.ring-inner strong{font-size:2rem}.breakdown{gap:7px}.statbox{padding:12px}.statbox b{font-size:1.3rem}.statbox span{font-size:.65rem}.result-actions .btn{flex:1}.reviewitem summary{font-size:.84rem}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+  </style>
+</head>
+<body>
+  <header class="topbar shell">
+    <div class="brand">
+      <span class="brandmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3c0 5-6 5-6 10a6 6 0 0 0 12 0c0-5-6-5-6-10Z"/><path d="M7.5 16c2-3 5-3 8-5"/><circle cx="13.7" cy="8.8" r="1" fill="currentColor" stroke="none"/></svg></span>
+      <span>ZOOLOGY <span class="sub">QUEST / 01</span></span>
+    </div>
+    <div class="topright"><span class="chapter">CHAPTER 01</span><button type="button" class="share" id="shareTop"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.2m-6.6 8 6.6 3.9"/></svg> Share quiz</button></div>
+  </header>
+
+  <main>
+    <section class="shell" id="intro" aria-labelledby="mainTitle">
+      <div class="introcopy">
+        <div class="eyebrow">Explore. Learn. Remember.</div>
+        <h1 class="headline" id="mainTitle">Know your <em>living world.</em></h1>
+        <p class="leadin">A smarter way to revise Zoology Chapter 1. Twenty focused multiple-choice questions, one answer at a time, with instant feedback that actually helps you learn.</p>
+        <p class="arabic-note" lang="ar">اختبار تفاعلي من 20 سؤال حسب تحديدات المحاضرة وملخص المذاكرة. اختر إجابتك وشوف الصح والغلط والشرح فورًا.</p>
+        <div class="heroactions"><button class="btn btn-primary" type="button" id="startBtn">Start the challenge <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><span class="chapter">20 MCQs · 20 points</span></div>
+        <p class="secondary-copy">No sign-in · Instant explanations · At your own pace</p>
+      </div>
+      <div class="visual" aria-hidden="true"><div class="orb">
+        <svg class="rings" viewBox="0 0 460 460"><circle cx="230" cy="230" r="199" stroke-dasharray="2 11"/><circle cx="230" cy="230" r="154" stroke-dasharray="1 9"/><circle cx="230" cy="230" r="123"/></svg>
+        <span class="orbitdot one"></span><span class="orbitdot two"></span><span class="orbitdot three"></span>
+        <div class="seed"><svg viewBox="0 0 190 190" fill="none"><path d="M96 157V70" stroke="#d5ffa7" stroke-width="5" stroke-linecap="round"/><path d="M96 113C62 122 43 108 34 81c28-3 51 7 62 32Zm0-29c0-31 21-48 49-51 2 31-18 51-49 51Z" fill="#b0f27b" stroke="#d4ffaa" stroke-width="3" stroke-linejoin="round"/><path d="M96 139c26-15 44-12 59 6-24 14-43 11-59-6Z" fill="#72dca3" stroke="#c5ffb1" stroke-width="3"/><path d="M57 160c25-12 50-12 76 0" stroke="#b1f5a1" stroke-width="3" stroke-linecap="round"/></svg></div>
+        <div class="floatlabel a"><span class="tiny">TOPICS</span><b>7 properties</b>of living systems</div>
+        <div class="floatlabel b"><span class="tiny">LEARN AS YOU GO</span><b>Instant feedback</b>after every answer</div>
+      </div></div>
+      <div class="brief"><p>CURATED FROM YOUR LECTURE SCOPE & HANDWRITTEN NOTES</p><div class="topics"><span class="chip">Living systems</span><span class="chip">Metabolism</span><span class="chip">Evolution</span><span class="chip">Inheritance</span></div></div>
+    </section>
+
+    <section class="quiz-container hidden" id="quizScreen" aria-label="Interactive quiz">
+      <div class="quiz-top"><div class="quiz-header"><span class="mini-eyebrow">YOUR ZOOLOGY CHALLENGE</span><h2>Test your knowledge.</h2></div><div class="scorer"><strong id="liveScore">0</strong><span>correct so far</span></div></div>
+      <div class="progressline" role="progressbar" aria-label="Questions answered" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0" id="progressTrack"><div id="progressFill"></div></div>
+      <div class="smallmeta"><span id="progressText">Question 1 of 20</span><span>One choice per question</span></div>
+      <section class="question-panel" aria-labelledby="questionTitle"><div class="panel-inside"><div class="question-top"><span class="question-id" id="questionLabel">QUESTION 01</span><span class="topic-pill" id="topicTag"></span></div><h3 class="qtitle" id="questionTitle"></h3><div id="optionList" class="options" role="group" aria-label="Choose one answer"></div><div id="feedback" class="feedback hidden" role="status" aria-live="polite"></div></div><div class="panel-footer"><span id="footHelp" class="inline-help">Choose your answer to reveal the explanation.</span><button class="btn btn-primary btn-next" type="button" id="nextBtn" disabled>Next question <span aria-hidden="true">→</span></button></div></section>
+      <p class="keyboard-hint">Tip: use keys A, B, C, D to answer · Enter for next</p>
+    </section>
+
+    <section class="results hidden" id="resultScreen" aria-label="Quiz results">
+      <div class="result-hero"><div class="result-grid"><div><span class="result-tag">CHALLENGE COMPLETED</span><h2 id="resultHeadline">Well done!</h2><p id="resultMessage"></p><div class="result-actions"><button id="restartBtn" type="button" class="btn btn-primary">Try again <span aria-hidden="true">↻</span></button><button id="copyResultBtn" type="button" class="btn btn-outline">Copy my result</button></div></div><div class="result-ring" id="resultRing"><div class="ring-inner"><strong id="resultScore">0/20</strong><span>YOUR SCORE</span></div></div></div></div>
+      <div class="breakdown"><div class="statbox"><b id="statCorrect">0</b><span>Correct answers</span></div><div class="statbox"><b id="statWrong">0</b><span>To review</span></div><div class="statbox"><b id="statPercent">0%</b><span>Accuracy</span></div></div>
+      <div class="review-wrap"><div class="reviewheading"><div><h3>Review your answers</h3><p>Tap any question to see what you selected and why.</p></div><button type="button" class="ghost" id="toggleReview">Expand all</button></div><div id="reviewList"></div></div>
+    </section>
+  </main>
+  <footer class="shell site-footer"><span>Made for Chapter 1 revision · Student practice quiz, not an official university exam.</span><span>Your answers stay in your browser. No responses are collected.</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    'use strict';
+    const questions=[{"topic":"General properties","slide":"Slide 1","q":"How many general properties of living systems are listed in the lecture?","options":["Five","Six","Seven","Eight"],"answer":2,"explanation":"The lecture lists seven general properties of living systems."},{"topic":"Title only","slide":"Slide 2","q":"Which property title refers to the chemical aspect of living systems?","options":["Chemical Uniqueness","Common Descent","Gradualism","Natural Selection"],"answer":0,"explanation":"Chemical Uniqueness is the first property title. Its detailed definition was not required by the slide annotation."},{"topic":"Title only","slide":"Slide 3","q":"Which is the correct property title about levels of biological organization?","options":["Multiplication of Species","Complexity and Hierarchical Organization","Perpetual Change","Chromosomal Inheritance"],"answer":1,"explanation":"Complexity and Hierarchical Organization is the second property title. Only the title is tested here."},{"topic":"Reproduction","slide":"Slide 4","q":"According to the highlighted definition, organisms reproduce in which two ways?","options":["By growth and development","By anabolism and catabolism","Sexually and asexually","By evolution and inheritance"],"answer":2,"explanation":"The highlighted sentence states that organisms reproduce sexually and asexually."},{"topic":"Reproduction","slide":"Slide 4","q":"What does reproduction produce, according to the highlighted sentence?","options":["Complex food substances","New organisms","Energy for body activities","Environmental stimuli"],"answer":1,"explanation":"The stated purpose of reproduction in the slide is to produce new organisms."},{"topic":"Title only","slide":"Slide 5","q":"Which title names the property concerned with a living organism’s genetic program?","options":["Mendelian Inheritance","Chemical Uniqueness","Natural Selection","Possession of a Genetic Program"],"answer":3,"explanation":"The fourth listed property is Possession of a Genetic Program. Its DNA details were not requested for this title-only slide."},{"topic":"Metabolism","slide":"Slide 6","q":"In the lecture, metabolism is described as the process in which the body:","options":["Uses absorbed, digested food","Produces new offspring","Changes shape during development","Forms new species"],"answer":0,"explanation":"The highlighted lecture definition describes metabolism as the utilization of absorbed, digested food."},{"topic":"Metabolism","slide":"Slide 6","q":"Which two processes are included in metabolism?","options":["Growth and development","Anabolism and catabolism","Reproduction and inheritance","Evolution and natural selection"],"answer":1,"explanation":"Metabolism includes the two processes named in the slide: anabolism and catabolism."},{"topic":"Metabolism","slide":"Slide 6","q":"What happens during anabolism, according to the highlighted definition?","options":["New organisms are produced","Complex substances become simple substances","Simple food substances become complex food substances","Environmental stimuli are detected"],"answer":2,"explanation":"Anabolism converts simple food substances into complex food substances."},{"topic":"Metabolism","slide":"Slide 6","q":"According to the slide, catabolism involves the oxidation of absorbed food substances, especially carbohydrates, to produce:","options":["New species","New organisms","Chromosomes","Energy"],"answer":3,"explanation":"The lecture states that catabolism oxidizes absorbed food substances, especially carbohydrates, to provide energy for vital activities."},{"topic":"Development","slide":"Slide 7","q":"Which three kinds of change are highlighted in the definition of development?","options":["Size, shape, and structure","Temperature, light, and pressure","Heredity, variation, and reproduction","Energy, food, and oxygen"],"answer":0,"explanation":"The highlighted part of the definition mentions changes in size, shape, and structure."},{"topic":"Title only","slide":"Slide 8","q":"Which of the seven property titles describes interactions with the environment?","options":["Chemical Uniqueness","Environmental Interactions","Possession of a Genetic Program","Reproduction"],"answer":1,"explanation":"Environmental Interactions is the seventh property title. The lecture annotation says to know the title only."},{"topic":"Darwin and Mendel","slide":"Slide 9 and notes","q":"Which scientist is linked to the theory of evolution in the lecture?","options":["Gregor Mendel","Robert Hooke","Charles Darwin","Louis Pasteur"],"answer":2,"explanation":"Charles Darwin is associated with the theory of evolution."},{"topic":"Darwin and Mendel","slide":"Slide 9 and notes","q":"Which scientist is linked to inheritance in the lecture’s two research guidelines?","options":["Charles Darwin","Louis Pasteur","Robert Hooke","Gregor Mendel"],"answer":3,"explanation":"The other research guideline is associated with Gregor Mendel and inheritance."},{"topic":"Darwin principles","slide":"Handwritten notes, page 2","q":"Which of the following is a named principle of Darwin’s theory in your class notes?","options":["Perpetual Change","Chemical Uniqueness","Genetic Program","Environmental Interactions"],"answer":0,"explanation":"Perpetual Change is listed as the first of Darwin’s five principles in the handwritten notes."},{"topic":"Darwin principles","slide":"Handwritten notes, page 2","q":"Which Darwinian principle is linked in the notes to a branching evolutionary tree (phylogeny)?","options":["Gradualism","Common Descent","Natural Selection","Perpetual Change"],"answer":1,"explanation":"Common Descent is linked to the branching history of life, described as phylogeny in the notes."},{"topic":"Darwin principles","slide":"Handwritten notes, page 2","q":"Which principle says that evolution can produce new species from existing ones?","options":["Common Descent","Gradualism","Multiplication of Species","Natural Selection"],"answer":2,"explanation":"Multiplication of Species concerns the formation of new species through evolution."},{"topic":"Darwin principles","slide":"Handwritten notes, page 2","q":"Which principle describes large evolutionary differences arising from many small, gradual changes?","options":["Common Descent","Perpetual Change","Multiplication of Species","Gradualism"],"answer":3,"explanation":"Gradualism describes the accumulation of small changes over time."},{"topic":"Darwin principles","slide":"Handwritten notes, page 2","q":"What is the fifth principle of Darwin’s theory named in the notes?","options":["Natural Selection","Common Descent","Perpetual Change","Gradualism"],"answer":0,"explanation":"Natural Selection is listed as the fifth principle in the handwritten notes. This question tests the title, not a detailed definition."},{"topic":"Analogy and Homology","slide":"Handwritten notes, page 2","q":"Which statement correctly distinguishes analogy from homology?","options":["Analogy shares evolutionary origin; homology does not.","Analogy involves similar functions but different origins; homology involves a shared evolutionary origin.","Analogy means identical structures; homology means no structural similarity.","Analogy and homology both require identical functions and origins."],"answer":1,"explanation":"Analogy refers to similar function without the same evolutionary origin; homology refers to shared evolutionary origin, even when functions differ. This is the more precise version of the notes."}];
+    const letters=['A','B','C','D'];
+    const $=id=>document.getElementById(id);
+    let index=0,score=0,chosen=null,answers=[],toastTimer=null;
+    const intro=$('intro'),quiz=$('quizScreen'),results=$('resultScreen');
+    function scrollTop(){window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
+    function toast(msg){const box=$('toast');box.textContent=msg;box.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>box.classList.remove('visible'),3100)}
+    function start(){index=0;score=0;chosen=null;answers=[];intro.classList.add('hidden');results.classList.add('hidden');quiz.classList.remove('hidden');renderQuestion();scrollTop();}
+    function renderQuestion(){
+      const q=questions[index];chosen=null;
+      $('liveScore').textContent=String(score);$('questionLabel').textContent='QUESTION '+String(index+1).padStart(2,'0');$('topicTag').textContent=q.topic;
+      $('questionTitle').textContent=q.q;$('progressText').textContent='Question '+(index+1)+' of '+questions.length;
+      $('progressFill').style.width=(100*index/questions.length)+'%';$('progressTrack').setAttribute('aria-valuenow',String(index));
+      const list=$('optionList');list.replaceChildren();
+      q.options.forEach((option,i)=>{let b=document.createElement('button');b.type='button';b.className='option';b.dataset.choice=String(i);
+        const letter=document.createElement('span');letter.className='opt-letter';letter.textContent=letters[i];
+        const txt=document.createElement('span');txt.className='opt-text';txt.textContent=option;
+        const marker=document.createElement('span');marker.className='opt-status';marker.setAttribute('aria-hidden','true');
+        b.append(letter,txt,marker);b.addEventListener('click',()=>pick(i));list.append(b);
+      });
+      $('feedback').className='feedback hidden';$('feedback').replaceChildren();$('footHelp').textContent='Choose your answer to reveal the explanation.';
+      $('nextBtn').disabled=true;$('nextBtn').innerHTML=index===questions.length-1?'See my results <span aria-hidden="true">→</span>':'Next question <span aria-hidden="true">→</span>';
+    }
+    function pick(i){if(chosen!==null)return;chosen=i;const q=questions[index],right=i===q.answer;if(right)score++;
+      answers.push({picked:i,correct:right});$('liveScore').textContent=String(score);
+      const buttons=[...$('optionList').querySelectorAll('.option')];
+      buttons.forEach((b,j)=>{b.disabled=true;if(j===q.answer){b.classList.add('correct');b.querySelector('.opt-status').textContent='✓';}else if(j===i){b.classList.add('incorrect');b.querySelector('.opt-status').textContent='✕';}else{b.classList.add('dimmed');}});
+      $('progressFill').style.width=(100*(index+1)/questions.length)+'%';$('progressTrack').setAttribute('aria-valuenow',String(index+1));
+      const f=$('feedback');f.className='feedback '+(right?'correctfeed':'wrongfeed');
+      const title=document.createElement('strong');title.textContent=right?'✓  Correct answer!':'✕  Not quite — you’ve got this.';
+      const ans=document.createElement('p');ans.className='answer-label';ans.textContent='Correct answer: '+letters[q.answer]+') '+q.options[q.answer];
+      const why=document.createElement('p');why.textContent=q.explanation;f.replaceChildren(title,ans,why);
+      $('footHelp').textContent=right?'Nice work — keep going.':'Read the explanation, then try the next one.';$('nextBtn').disabled=false;
+    }
+    function next(){if(chosen===null)return;if(index<questions.length-1){index++;renderQuestion();quiz.scrollIntoView({block:'start',behavior:'smooth'})}else{finish();}}
+    function finish(){quiz.classList.add('hidden');results.classList.remove('hidden');const pct=Math.round(score*100/questions.length);
+      let headline,message;
+      if(score>=18){headline='Outstanding work!';message='You have a strong grasp of the chapter. Keep that momentum for exam day.'}
+      else if(score>=14){headline='Great progress!';message='You know the essentials. Review the few missed concepts to make it even stronger.'}
+      else if(score>=10){headline='Keep building!';message='You are making progress. Use the explanations below to target the topics worth revisiting.'}
+      else{headline='Every attempt helps.';message='The review below shows exactly what to revisit. Try again whenever you are ready.'}
+      $('resultHeadline').textContent=headline;$('resultMessage').textContent=message;$('resultScore').textContent=score+'/'+questions.length;
+      $('resultRing').style.setProperty('--pct',pct+'%');$('statCorrect').textContent=score;$('statWrong').textContent=questions.length-score;$('statPercent').textContent=pct+'%';
+      const list=$('reviewList');list.replaceChildren();questions.forEach((q,i)=>{
+        const d=document.createElement('details');d.className='reviewitem';
+        const s=document.createElement('summary');const n=document.createElement('span');n.className='number';n.textContent=String(i+1).padStart(2,'0');
+        const question=document.createElement('span');question.textContent=q.q;
+        const status=document.createElement('span');status.className='status '+(answers[i].correct?'pass':'fail');status.textContent=answers[i].correct?'✓ Correct':'✕ Review';
+        s.append(n,question,status);const body=document.createElement('div');body.className='reviewbody';
+        const your=document.createElement('p');const label=document.createElement('b');label.textContent='Your choice: ';const yourValue=document.createElement('span');yourValue.className=answers[i].correct?'green':'red';yourValue.textContent=letters[answers[i].picked]+') '+q.options[answers[i].picked];your.append(label,yourValue);
+        const answer=document.createElement('p');const correctLabel=document.createElement('b');correctLabel.textContent='Correct answer: ';const correctValue=document.createElement('span');correctValue.className='green';correctValue.textContent=letters[q.answer]+') '+q.options[q.answer];answer.append(correctLabel,correctValue);
+        const explanation=document.createElement('p');explanation.textContent=q.explanation;body.append(your,answer,explanation);d.append(s,body);list.append(d);
+      });$('toggleReview').textContent='Expand all';scrollTop();
+    }
+    async function copyText(value){if(navigator.clipboard&&window.isSecureContext){try{await navigator.clipboard.writeText(value);return true}catch(e){}}try{const t=document.createElement('textarea');t.value=value;t.style.position='fixed';t.style.opacity='0';document.body.append(t);t.select();const ok=document.execCommand('copy');t.remove();return ok;}catch(e){return false}}
+    function hosted(){return /^https?:$/.test(location.protocol)}
+    async function shareQuiz(){if(!hosted()){toast('To share a public link, upload the site folder to Netlify Drop first.');return;}
+      const payload={title:'Zoology Quest — Chapter 1',text:'20 MCQs with instant feedback. Try the Zoology Chapter 1 challenge!',url:location.href};
+      if(navigator.share){try{await navigator.share(payload);return}catch(e){if(e.name==='AbortError')return}}
+      const ok=await copyText(location.href);toast(ok?'Quiz link copied!':'Copy this page URL from your browser to share it.');
+    }
+    async function copyResult(){const pct=Math.round(score*100/questions.length),url=hosted()?('\nTry it: '+location.href):'';
+      const ok=await copyText('Zoology Quest · Chapter 1\nMy score: '+score+'/20 ('+pct+'%)'+url);toast(ok?'Result copied — ready to send!':'Copy unavailable; take a screenshot of your result.');}
+    $('startBtn').addEventListener('click',start);$('shareTop').addEventListener('click',shareQuiz);$('nextBtn').addEventListener('click',next);$('restartBtn').addEventListener('click',start);$('copyResultBtn').addEventListener('click',copyResult);
+    $('toggleReview').addEventListener('click',()=>{const ds=[...document.querySelectorAll('.reviewitem')],expand=ds.some(x=>!x.open);ds.forEach(x=>x.open=expand);$('toggleReview').textContent=expand?'Collapse all':'Expand all';});
+    document.addEventListener('keydown',e=>{if(quiz.classList.contains('hidden')||e.altKey||e.ctrlKey||e.metaKey||e.target.closest('input, textarea, select'))return;
+      if(chosen===null){const key=e.key.toUpperCase();if(letters.includes(key)){e.preventDefault();pick(letters.indexOf(key));}}
+      else if(e.key==='Enter'&&!e.repeat){e.preventDefault();next();}
+    });
+  </script>
+</body>
+</html>
